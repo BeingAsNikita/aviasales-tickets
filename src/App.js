@@ -1,9 +1,20 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+import TransferFilter from './Components/TransferFilter/TransferFilter';
+import PriceFilter from './Components/PriceFilter/PriceFilter';
+import Ticket from './Components/Ticket/Ticket';
 
-function App() {
+const App = () => {
   return (
-    <h1>Tickets</h1>
+    <>  
+      <div className="app__container">
+      
+
+        <TransferFilter />
+        <PriceFilter />
+        <Ticket />
+      </div>
+    </>
   );
 }
 

@@ -1,0 +1,16 @@
+.transferFilter {
+    grid-area: s;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+    max-width: 232px;
+    max-height: 252px;
+    &__title {
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
