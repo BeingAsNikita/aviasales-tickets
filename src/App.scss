@@ -17,16 +17,26 @@ input[type="radio"].visually-hidden {
 }
 
 .app__container {
-  background-color: #F3F7FA;
+  max-width: 960px;
+  margin: 0 auto;
+  min-height: 100vh;
 
   display: grid;
   grid-template-areas: 
-  "s p p "
+  "s c c "
   "s c c "
   "s c c ";
 
-  grid-template-rows: 50px 4fr; 
   grid-template-columns: 4fr 8fr;
   grid-gap: 20px;
   padding: 160px 103px;
+}
+
+.sidebar {
+  grid-area: s;
+}
+
+.content {
+  grid-area: c;
+
 }

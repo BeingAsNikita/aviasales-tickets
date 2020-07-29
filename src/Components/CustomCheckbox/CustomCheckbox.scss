@@ -17,6 +17,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
 }
 
 .customCheckbox__fake {
@@ -28,9 +31,9 @@
     margin-right: 10px;
 }
 
-input[type="checkbox"]:checked + .customCheckbox__fake {    
+input[type="checkbox"]:checked+.customCheckbox__fake {
     background-image: url("../../assets/imgs/shape-icon.svg");
     background-repeat: no-repeat;
     background-size: 12px 8px;
     background-position: 50% 50%;
-  }
+}
