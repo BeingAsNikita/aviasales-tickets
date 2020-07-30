@@ -1,8 +1,10 @@
 import { API } from "../Api/api";
+import { filtration } from "../utils/filters";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 const GET_SEARCHING_ID = 'GET_SEARCHING_ID';
 const GET_TICKETS_SUCCESS = 'GET_TICKETS_SUCCESS';
+const FILTER_SUCCESS = 'FILTER_SUCCESS';
 
 let initialState = {
     initialized: false,
@@ -28,6 +30,12 @@ const appReduser = (state = initialState, action) => {
                     ...state,
                     tickets: action.payload
                 }
+                
+                case FILTER_SUCCESS: 
+                return {
+                    ...state,
+                    tickets: filtration(action.payload, state.tickets)
+                }
         default:
             return state
     }
@@ -36,6 +44,8 @@ const appReduser = (state = initialState, action) => {
 export const setInitializedSuccess = () => ({ type: INITIALIZED_SUCCESS });
 export const getSearchingIdSuccess = (id) => ({ type: GET_SEARCHING_ID, payload: id });
 export const getTicketsSuccess = (data) => ({ type: GET_TICKETS_SUCCESS, payload: data });
+export const filterSuccess = (filters) => ({ type: FILTER_SUCCESS, payload: filters });
+
 
 
 
@@ -55,5 +65,7 @@ export const getTickets = (id) => {
        dispatch(setInitializedSuccess()) 
     }
 }
+
+
 
 export default appReduser;

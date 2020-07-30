@@ -22,7 +22,9 @@
         align-items: center;
         width: 50%;
         height: 100%;
+        cursor: pointer;
 
+       
     }
 
     &__fake {
@@ -30,6 +32,10 @@
         height: 100%;
         padding: 15px 57px;
         
+        &:hover {
+            background-color: #F1FCFF;
+        }
+
 
         &--left {
             border-top-left-radius: 6px;
@@ -51,5 +57,5 @@
 input[type="radio"]:checked+.priceFilter__fake {
     background-color: #2196F3;
     color: #FFFFFF;
-    
+
 }
