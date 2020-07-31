@@ -16,8 +16,19 @@ input[type="radio"].visually-hidden {
   overflow: hidden;
 }
 
+.app {
+  background-color: #F3F7FA;
+  min-height: 100vh;
+  width: 100%;
+  padding: 50px 103px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .app__container {
-  max-width: 960px;
+  max-width: 755px;
   margin: 0 auto;
   min-height: 100vh;
 
@@ -29,7 +40,7 @@ input[type="radio"].visually-hidden {
 
   grid-template-columns: 4fr 8fr;
   grid-gap: 20px;
-  padding: 160px 103px;
+  padding-top: 50px;
 }
 
 .sidebar {

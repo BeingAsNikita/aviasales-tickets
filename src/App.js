@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import { getSearchId, filterSuccess, getTickets } from './Store/appReduser';
 import { filtration, checkboxToggle } from './utils/filters';
 
-
+import logo from './assets/imgs/logo.svg';
+import Preloader from './Components/Preloader/Preloader';
 
 
 const App = ({ tickets, getSearchId, initialized, filterSuccess, searchId, stop }) => {
@@ -41,19 +42,25 @@ const App = ({ tickets, getSearchId, initialized, filterSuccess, searchId, stop 
   }
 
   return (
-    initialized ?
-      <div className="app__container">
-        <div className="sidebar">
-          <TransferFilter filters={filters} onChange={onFilterChangeHandler} />
-        </div>
-        <div className="content">
-          <PriceFilter filters={filters} onChange={onFilterChangeHandler} />
-          <TicketsList tickets={newTickets} filters={filters} />
-        </div>
+
+    <div className="app">
+     
+      <img src={logo} alt={'logo'} />
+      {initialized
+        ? <div className="app__container">
+          <div className="sidebar">
+            <TransferFilter filters={filters} onChange={onFilterChangeHandler} />
+          </div>
+          <div className="content">
+            <PriceFilter filters={filters} onChange={onFilterChangeHandler} />
+            <TicketsList tickets={newTickets} filters={filters} />
+          </div>
 
 
-      </div>
-      : 'Loading'
+        </div>
+        :  <Preloader />}
+    </div>
+
   );
 }
 
