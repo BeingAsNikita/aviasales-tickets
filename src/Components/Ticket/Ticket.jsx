@@ -2,14 +2,17 @@ import React from 'react';
 import './Ticket.scss';
 import { getTime } from '../../utils/getTime';
 
+const transfersText = {
+    "0": 'Без пересадок',
+    "1": '1 пересадка',
+    "2": '2 пересадки',
+    "3": '3 пересадки',
+}
+
 const Ticket = ({ price, carrier, segments }) => {
-
-
 
     let timeIn = getTime(segments[0].date, segments[0].duration);
     let timeOut = getTime(segments[1].date, segments[1].duration);
-
-
 
     return (
             <li className="ticket">
@@ -51,7 +54,7 @@ const Ticket = ({ price, carrier, segments }) => {
                     <div className="ticket__inner">
 
 
-                        <span className="ticket__subtitle">2 пересадки</span>
+                        <span className="ticket__subtitle">{`${transfersText[segments[0].stops.length]}`}</span>
                         <span>
                             {segments[0].stops.join()}
                         </span>
@@ -84,7 +87,7 @@ const Ticket = ({ price, carrier, segments }) => {
                     </div>
 
                     <div className="ticket__inner">
-                        <span className="ticket__subtitle">1 пересадка</span>
+                        <span className="ticket__subtitle">{`${transfersText[segments[1].stops.length]}`}</span>
                         <span>
                             {segments[1].stops.join()}
                         </span>
