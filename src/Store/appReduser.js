@@ -26,18 +26,18 @@ const appReduser = (state = initialState, action) => {
                 searchId: action.payload
             }
 
-            case GET_TICKETS_SUCCESS:
-                return {
-                    ...state,
-                    tickets: state.tickets.concat(action.payload.data),
-                    stop: action.payload.stop
-                }
-                
-                case FILTER_SUCCESS: 
-                return {
-                    ...state,
-                    tickets: filtration(action.payload, state.tickets)
-                }
+        case GET_TICKETS_SUCCESS:
+            return {
+                ...state,
+                tickets: state.tickets.concat(action.payload.data),
+                stop: action.payload.stop
+            }
+
+        case FILTER_SUCCESS:
+            return {
+                ...state,
+                tickets: filtration(action.payload, state.tickets)
+            }
         default:
             return state
     }
@@ -45,7 +45,7 @@ const appReduser = (state = initialState, action) => {
 
 export const setInitializedSuccess = () => ({ type: INITIALIZED_SUCCESS });
 export const getSearchingIdSuccess = (id) => ({ type: GET_SEARCHING_ID, payload: id });
-export const getTicketsSuccess = (data, stop) => ({ type: GET_TICKETS_SUCCESS, payload: {data: data, stop: stop} });
+export const getTicketsSuccess = (data, stop) => ({ type: GET_TICKETS_SUCCESS, payload: { data: data, stop: stop } });
 export const filterSuccess = (filters) => ({ type: FILTER_SUCCESS, payload: filters });
 
 
@@ -53,7 +53,7 @@ export const filterSuccess = (filters) => ({ type: FILTER_SUCCESS, payload: filt
 
 export const getSearchId = () => {
     return async dispatch => {
-       let id = await API.getSearchId()
+        let id = await API.getSearchId()
         dispatch(getSearchingIdSuccess(id.data.searchId))
         dispatch(getTickets(id.data.searchId))
     }
@@ -61,13 +61,19 @@ export const getSearchId = () => {
 
 export const getTickets = (id) => {
     return async dispatch => {
-       let data = await API.getTickets(id)
-      
+
+        let data = await API.getTickets(id)
+
 
         dispatch(getTicketsSuccess(data.data.tickets, data.data.stop))
-       
-       dispatch(setInitializedSuccess()) 
-       
+        dispatch(setInitializedSuccess())
+        
+        while (data.data.stop === false) {
+            data = await API.getTickets(id)
+            dispatch(getTicketsSuccess(data.data.tickets, data.data.stop))
+
+        }
+
     }
 }
 
