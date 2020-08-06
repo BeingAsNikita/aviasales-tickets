@@ -29,7 +29,6 @@ export const filtration = (filters, items) => {
         } else if (filters.three) {
             newItems = newItems = newItems.filter(item => item.segments[0].stops.length === 3)
         }
-
         return newItems
     }
 }

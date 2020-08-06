@@ -37,17 +37,17 @@ const App = ({ tickets, getSearchId, initialized, filterSuccess, searchId, stop 
     let filter = e.target.id
     let newFilters = checkboxToggle(filter, filters)
     setFilters(newFilters)
-    console.log(newFilters)
+    
     setNewTickets(filtration(newFilters, tickets))
+
   }
 
   return (
 
     <div className="app">
      
-      <img src={logo} alt={'logo'} />
-      {initialized
-        ? <div className="app__container">
+      <img src={logo} alt={'logo'} className={`${!initialized && 'animate'}`} />
+      {initialized && <div className="app__container">
           <div className="sidebar">
             <TransferFilter filters={filters} onChange={onFilterChangeHandler} />
           </div>
@@ -58,7 +58,7 @@ const App = ({ tickets, getSearchId, initialized, filterSuccess, searchId, stop 
 
 
         </div>
-        :  <Preloader />}
+       }
     </div>
 
   );

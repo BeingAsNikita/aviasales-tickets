@@ -63,10 +63,10 @@ export const getTickets = (id) => {
     return async dispatch => {
 
         let data = await API.getTickets(id)
-
-
-        dispatch(getTicketsSuccess(data.data.tickets, data.data.stop))
-        dispatch(setInitializedSuccess())
+        if(data.status === 200) {
+            dispatch(getTicketsSuccess(data.data.tickets, data.data.stop))
+            dispatch(setInitializedSuccess())
+        }
         
         while (data.data.stop === false) {
             data = await API.getTickets(id)

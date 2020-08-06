@@ -15,7 +15,7 @@ const Ticket = ({ price, carrier, segments }) => {
     let timeOut = getTime(segments[1].date, segments[1].duration);
 
     return (
-            <li className="ticket">
+            <li className="ticket" onClick={() => console.log(segments)}>
                 <div className="ticket__header">
                     <div className="ticket__price">
                         {`${price} Р`}

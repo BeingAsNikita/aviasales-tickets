@@ -8,7 +8,7 @@ export const getTime = (date, duration) => {
     let d = new Date(date);
     let arrivalHour = Math.floor((d.getHours() * 60 + d.getMinutes() + duration) / 60);
     let arrivalMinutes = Math.floor( ((d.getHours() * 60 + d.getMinutes() + duration) / 60 - arrivalHour) * 60);
-    if (arrivalHour > 24) {
+    if (arrivalHour >= 24) {
         arrivalHour = arrivalHour - 24
     }
     return {
